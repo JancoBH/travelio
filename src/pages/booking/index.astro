@@ -30,15 +30,15 @@ const total = tour.price * 2 + 144;
               <div class="mt-4 grid gap-3 text-sm text-white/78">
                 <div class="flex items-center gap-2">
                   <Icon name="clock" class="h-4 w-4 text-brand-accent" />
-                  {tour.durationDays} Days / {tour.durationDays - 1} Nights
+                  <span>{tour.durationDays}</span> <span data-i18n="booking.days">Days</span> / <span>{tour.durationDays - 1}</span> <span data-i18n="booking.nights">Nights</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <Icon name="users" class="h-4 w-4 text-brand-accent" />
-                  2 Adults
+                  <span data-i18n="booking.options.2adults">2 Adults</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <Icon name="calendar" class="h-4 w-4 text-brand-accent" />
-                  May 20 - May 24, 2026
+                  <span data-i18n="booking.demoDate">May 20 - May 24, 2026</span>
                 </div>
               </div>
             </div>
@@ -94,17 +94,17 @@ const total = tour.price * 2 + 144;
                     <div>
                       <label data-i18n="booking.field.adults" class="text-sm font-semibold text-brand-text">Adults</label>
                       <select class="field-box mt-3 h-12 w-full px-4 text-sm text-brand-text outline-none">
-                        <option>2 Adults</option>
-                        <option>1 Adult</option>
-                        <option>3 Adults</option>
+                        <option data-i18n="booking.options.2adults">2 Adults</option>
+                        <option data-i18n="booking.options.1adult">1 Adult</option>
+                        <option data-i18n="booking.options.3adults">3 Adults</option>
                       </select>
                     </div>
                     <div>
                       <label data-i18n="booking.field.children" class="text-sm font-semibold text-brand-text">Children</label>
                       <select class="field-box mt-3 h-12 w-full px-4 text-sm text-brand-text outline-none">
-                        <option>0 Children</option>
-                        <option>1 Child</option>
-                        <option>2 Children</option>
+                        <option data-i18n="booking.options.0children">0 Children</option>
+                        <option data-i18n="booking.options.1child">1 Child</option>
+                        <option data-i18n="booking.options.2children">2 Children</option>
                       </select>
                     </div>
                   </div>
@@ -132,11 +132,11 @@ const total = tour.price * 2 + 144;
                   </div>
                   <div class="rounded-3xl bg-brand-bg p-5">
                     <div data-i18n="table.date" class="text-sm text-brand-muted">Date</div>
-                    <div class="mt-2 font-semibold text-brand-text">May 20 - May 24, 2026</div>
+                    <div class="mt-2 font-semibold text-brand-text" data-i18n="booking.demoDate">May 20 - May 24, 2026</div>
                   </div>
                   <div class="rounded-3xl bg-brand-bg p-5">
                     <div data-i18n="tourDetail.travelers" class="text-sm text-brand-muted">Travelers</div>
-                    <div class="mt-2 font-semibold text-brand-text">2 Adults</div>
+                    <div class="mt-2 font-semibold text-brand-text" data-i18n="booking.options.2adults">2 Adults</div>
                   </div>
                   <div class="rounded-3xl bg-brand-bg p-5">
                     <div data-i18n="tourDetail.total" class="text-sm text-brand-muted">Total</div>

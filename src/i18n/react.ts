@@ -4,6 +4,7 @@ import {
   messages,
   normalizeLocale,
   type Locale,
+  type TranslationKey,
 } from "./messages";
 
 const STORAGE_KEY = "travelio-language";
@@ -50,7 +51,7 @@ export function useTranslations() {
   const locale = useLocale();
 
   const t = useMemo(
-    () => (key: string) => messages[locale][key] ?? messages.en[key],
+    () => (key: TranslationKey) => messages[locale][key] ?? messages.en[key],
     [locale],
   );
 

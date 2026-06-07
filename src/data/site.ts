@@ -1,4 +1,6 @@
-export const navLinks = [
+import type { TranslationKey } from "../i18n/messages";
+
+export const navLinks: Array<{ key: TranslationKey; href: string }> = [
   { key: "nav.home", href: "/" },
   { key: "nav.tours", href: "/tours" },
   { key: "nav.destinations", href: "/destinations" },

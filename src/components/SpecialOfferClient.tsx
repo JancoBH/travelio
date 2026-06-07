@@ -47,7 +47,7 @@ export default function SpecialOfferClient() {
   );
 
   return (
-    <section className="overflow-hidden rounded-[32px] bg-brand-dark">
+    <section className="overflow-hidden rounded-4xl bg-brand-dark">
       <div className="relative">
         <img
           src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1800&q=80"

@@ -35,14 +35,14 @@ export default function UiSelect({
         <Select.Content
           position="popper"
           sideOffset={8}
-          className="z-50 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-3xl border border-brand-border bg-white p-2 shadow-[0_24px_64px_rgba(6,20,35,0.18)]"
+          className="z-50 min-w-(--radix-select-trigger-width) overflow-hidden rounded-3xl border border-brand-border bg-white p-2 shadow-[0_24px_64px_rgba(6,20,35,0.18)]"
         >
           <Select.Viewport className="space-y-1">
             {options.map((option) => (
               <Select.Item
                 key={option.value}
                 value={option.value}
-                className="flex min-h-11 cursor-pointer items-center justify-between rounded-2xl border border-transparent px-4 py-3 text-sm text-brand-muted outline-none transition data-[highlighted]:border-brand-teal/15 data-[highlighted]:bg-brand-bg data-[highlighted]:text-brand-text data-[state=checked]:bg-brand-bg/80 data-[state=checked]:text-brand-text"
+                className="flex min-h-11 cursor-pointer items-center justify-between rounded-2xl border border-transparent px-4 py-3 text-sm text-brand-muted outline-none transition data-highlighted:border-brand-teal/15 data-highlighted:bg-brand-bg data-highlighted:text-brand-text data-[state=checked]:bg-brand-bg/80 data-[state=checked]:text-brand-text"
               >
                 <Select.ItemText>{option.label}</Select.ItemText>
                 <Select.ItemIndicator className="ml-3 shrink-0">

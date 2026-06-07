@@ -71,7 +71,7 @@ export default function AdminWorkspaceClient({ recentBookings }: { recentBooking
 
   return (
     <section id={activeSection} className="card-surface scroll-mt-32 p-4 sm:p-5">
-      <div className="flex gap-2 overflow-x-auto rounded-[24px] bg-brand-bg p-2">
+      <div className="flex gap-2 overflow-x-auto rounded-3xl bg-brand-bg p-2">
         {sections.map((section) => {
           const Icon = section.icon;
           return (

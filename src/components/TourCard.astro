@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../lib/url";
 import FavoriteButton from "./FavoriteButton";
 import Icon from "./Icon.astro";
 import type { Tour } from "../data/tours";
@@ -12,7 +13,7 @@ const { tour } = Astro.props;
 
 <article class="card-surface group overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_rgba(6,20,35,0.14)]">
   <div class="relative">
-    <a href={`/tours/${tour.slug}`} class="block">
+    <a href={resolveUrl(`/tours/${tour.slug}`)} class="block">
       <img
         src={tour.image}
         alt={tour.alt}
@@ -32,7 +33,7 @@ const { tour } = Astro.props;
           kind: "tour",
           slug: tour.slug,
           name: tour.name,
-          href: `/tours/${tour.slug}`,
+          href: resolveUrl(`/tours/${tour.slug}`),
           image: tour.image,
           location: tour.location,
           priceLabel: `$${tour.price}`,
@@ -44,7 +45,7 @@ const { tour } = Astro.props;
   <div class="p-6">
     <div class="flex items-start justify-between gap-4">
       <div>
-        <a href={`/tours/${tour.slug}`} class="text-xl font-semibold tracking-tight text-brand-text transition hover:text-brand-teal">
+        <a href={resolveUrl(`/tours/${tour.slug}`)} class="text-xl font-semibold tracking-tight text-brand-text transition hover:text-brand-teal">
           {tour.name}
         </a>
         <p class="mt-2 flex items-center gap-2 text-sm text-brand-muted">
@@ -73,8 +74,8 @@ const { tour } = Astro.props;
     </div>
 
     <div class="mt-5 flex gap-3">
-      <a href={`/tours/${tour.slug}`} class="btn-secondary min-w-0 flex-1 px-4">Details</a>
-      <a href={`/booking?tour=${tour.slug}`} class="btn-primary min-w-0 flex-1 px-4">Book Now</a>
+      <a href={resolveUrl(`/tours/${tour.slug}`)} class="btn-secondary min-w-0 flex-1 px-4">Details</a>
+      <a href={resolveUrl(`/booking?tour=${tour.slug}`)} class="btn-primary min-w-0 flex-1 px-4">Book Now</a>
     </div>
   </div>
 </article>

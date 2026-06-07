@@ -110,11 +110,32 @@ export default function ComponentsShowcaseClient() {
         <p className="eyebrow">{t("components.cards")}</p>
         <h2 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">Tour card shell</h2>
         <article className="mt-5 overflow-hidden rounded-[28px] border border-brand-border bg-white">
-          <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
-            alt="Tropical beach experience"
-            className="h-40 w-full object-cover"
-          />
+          <div className="relative">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+              alt="Tropical beach experience"
+              className="h-40 w-full object-cover"
+            />
+            <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
+              <span className="rounded-full bg-brand-accent px-3 py-1 text-xs font-semibold text-brand-dark">
+                Best Seller
+              </span>
+              <FavoriteButton
+                light
+                ariaLabel="Toggle showcase tour favorite"
+                item={{
+                  id: "tour:island-hopper-adventure-showcase",
+                  kind: "tour",
+                  slug: "island-hopper-adventure-showcase",
+                  name: "Island Hopper Adventure",
+                  href: "/tours",
+                  image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
+                  location: "Bali, Indonesia",
+                  priceLabel: "$899",
+                }}
+              />
+            </div>
+          </div>
           <div className="p-5">
             <div className="flex items-center gap-2 text-sm text-brand-muted">
               <MapPin className="h-4 w-4 text-brand-teal" />

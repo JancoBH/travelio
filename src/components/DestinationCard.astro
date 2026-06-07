@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../lib/url";
 import Icon from "./Icon.astro";
 import FavoriteButton from "./FavoriteButton";
 import type { Destination } from "../data/destinations";
@@ -10,14 +11,14 @@ interface Props {
 const { destination } = Astro.props;
 ---
 
-<article class="group relative overflow-hidden rounded-[28px] border border-brand-border/40 bg-white shadow-[0_16px_40px_rgba(6,20,35,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_rgba(6,20,35,0.14)]">
-  <a href={`/destinations/${destination.slug}`} class="block">
+<article class="group relative overflow-hidden rounded-[28px] border border-brand-border/40 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_rgba(6,20,35,0.14)]">
+  <a href={resolveUrl(`/destinations/${destination.slug}`)} class="block">
     <img
       src={destination.image}
       alt={destination.alt}
-      class="h-[340px] w-full object-cover transition duration-500 group-hover:scale-105"
+      class="h-85 w-full object-cover transition duration-500 group-hover:scale-105"
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/28 to-brand-dark/8"></div>
+    <div class="absolute inset-0 bg-linear-to-t from-brand-dark via-brand-dark/28 to-brand-dark/8"></div>
     <div class="absolute right-4 top-4">
       <FavoriteButton
         client:idle
@@ -27,7 +28,7 @@ const { destination } = Astro.props;
           kind: "destination",
           slug: destination.slug,
           name: destination.name,
-          href: `/destinations/${destination.slug}`,
+          href: resolveUrl(`/destinations/${destination.slug}`),
           image: destination.image,
           location: destination.country,
           priceLabel: `$${destination.priceFrom}`,

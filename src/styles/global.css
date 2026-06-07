@@ -181,7 +181,7 @@ textarea:focus-visible {
 }
 
 .field-box.field-control {
-  @apply px-4;
+  @apply border border-brand-border bg-white px-4;
 }
 
 .field-control::placeholder {
