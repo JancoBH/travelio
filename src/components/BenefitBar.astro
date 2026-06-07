@@ -1,0 +1,48 @@
+---
+import Icon from "./Icon.astro";
+
+const benefits = [
+  {
+    titleKey: "benefit.price.title",
+    copyKey: "benefit.price.copy",
+    title: "Best Price Guarantee",
+    copy: "Carefully negotiated rates and premium value.",
+    icon: "shield",
+  },
+  {
+    titleKey: "benefit.rated.title",
+    copyKey: "benefit.rated.copy",
+    title: "Top Rated Tours",
+    copy: "Curated experiences loved by modern travelers.",
+    icon: "star",
+  },
+  {
+    titleKey: "benefit.support.title",
+    copyKey: "benefit.support.copy",
+    title: "24/7 Support",
+    copy: "Real help before, during, and after every trip.",
+    icon: "headset",
+  },
+  {
+    titleKey: "benefit.cancel.title",
+    copyKey: "benefit.cancel.copy",
+    title: "Free Cancellation",
+    copy: "Flexible bookings with stress-free changes.",
+    icon: "badge",
+  },
+] as const;
+---
+
+<div class="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4">
+  {benefits.map((benefit) => (
+    <div class="flex min-w-[260px] items-start gap-4 rounded-3xl border border-white/12 bg-white/8 p-4 backdrop-blur-sm md:min-w-0">
+      <span class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-accent/18 text-brand-accent">
+        <Icon name={benefit.icon} class="h-5 w-5" />
+      </span>
+      <div>
+        <h3 data-i18n={benefit.titleKey} class="text-sm font-semibold text-white">{benefit.title}</h3>
+        <p data-i18n={benefit.copyKey} class="mt-1 text-sm leading-6 text-white/70">{benefit.copy}</p>
+      </div>
+    </div>
+  ))}
+</div>

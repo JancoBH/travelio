@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  image: string;
+  eyebrowKey?: string;
+  titleKey?: string;
+  descriptionKey?: string;
+}
+
+const { eyebrow, title, description, image, eyebrowKey, titleKey, descriptionKey } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-brand-dark">
+  <div class="absolute inset-0">
+    <img src={image} alt="" class="h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/78 to-brand-dark/38"></div>
+  </div>
+  <div class="container-shell relative z-10 py-24 sm:py-28">
+    {eyebrow && <p data-i18n={eyebrowKey} class="text-sm font-medium uppercase tracking-[0.24em] text-brand-accent">{eyebrow}</p>}
+    <h1 data-i18n={titleKey} class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+      {title}
+    </h1>
+    <p data-i18n={descriptionKey} class="mt-5 max-w-2xl text-base leading-7 text-white/74 sm:text-lg">{description}</p>
+  </div>
+</section>

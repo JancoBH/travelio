@@ -1,0 +1,169 @@
+---
+import AppHeader from "../../components/AppHeader.astro";
+import DemoDateField from "../../components/DemoDateField";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import SaveBookingButton from "../../components/SaveBookingButton";
+import Layout from "../../layouts/Layout.astro";
+import { getTourBySlug, tours } from "../../data/tours";
+
+const tourParam = Astro.url.searchParams.get("tour");
+const tour = getTourBySlug(tourParam ?? "") ?? tours[3];
+const total = tour.price * 2 + 144;
+---
+
+<Layout title="Booking Flow | Travelio" description="A three-step booking flow demo for selecting dates, traveler details, and confirming a tour reservation.">
+  <AppHeader currentPath="/booking" />
+
+  <main id="main-content" class="pb-20 pt-10 sm:pb-24">
+    <div class="container-shell">
+      <div class="card-surface overflow-hidden">
+        <div class="grid gap-0 xl:grid-cols-[0.7fr_1.3fr]">
+          <aside class="border-b border-brand-border bg-brand-dark p-6 text-white xl:border-b-0 xl:border-r">
+            <p data-i18n="booking.eyebrow" class="text-sm font-medium uppercase tracking-[0.24em] text-brand-accent">Booking Flow</p>
+            <h1 data-i18n="booking.title" class="mt-4 text-3xl font-semibold tracking-tight">Secure your next trip</h1>
+            <div class="mt-6 rounded-[28px] bg-white/8 p-4">
+              <img src={tour.image} alt={tour.alt} class="h-48 w-full rounded-3xl object-cover" />
+              <h2 class="mt-4 text-xl font-semibold tracking-tight">{tour.name}</h2>
+              <p class="mt-2 text-sm text-white/70">{tour.location}</p>
+              <div class="mt-4 grid gap-3 text-sm text-white/78">
+                <div class="flex items-center gap-2">
+                  <Icon name="clock" class="h-4 w-4 text-brand-accent" />
+                  {tour.durationDays} Days / {tour.durationDays - 1} Nights
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="users" class="h-4 w-4 text-brand-accent" />
+                  2 Adults
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="calendar" class="h-4 w-4 text-brand-accent" />
+                  May 20 - May 24, 2026
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-[28px] bg-white/8 p-5">
+              <div class="flex items-center justify-between text-sm text-white/74">
+                <span data-i18n="booking.summary.tourPrice">Tour Price</span>
+                <span>${tour.price * 2}</span>
+              </div>
+              <div class="mt-3 flex items-center justify-between text-sm text-white/74">
+                <span data-i18n="booking.summary.taxesFees">Taxes & Fees</span>
+                <span>$144</span>
+              </div>
+              <div class="mt-4 border-t border-white/10 pt-4">
+                <div class="flex items-center justify-between font-semibold">
+                  <span data-i18n="tourDetail.total">Total</span>
+                  <span>${total}</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <section class="p-6 sm:p-8 lg:p-10">
+            <div class="grid gap-3 sm:grid-cols-3">
+              {[
+                { key: "booking.step1", label: "1. Select date" },
+                { key: "booking.step2", label: "2. Guest details" },
+                { key: "booking.step3", label: "3. Review & confirm" },
+              ].map((step, index) => (
+                <div class:list={["rounded-2xl px-4 py-3 text-sm font-semibold", index === 1 ? "bg-brand-accent text-brand-dark" : "bg-brand-bg text-brand-muted"]}>
+                  <span data-i18n={step.key}>{step.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-8 grid gap-6 xl:grid-cols-2">
+              <div class="card-surface p-6">
+                <h2 data-i18n="booking.step1Title" class="text-xl font-semibold tracking-tight text-brand-text">Step 1: Select date & travelers</h2>
+                <div class="mt-5 grid gap-4">
+                  <div>
+                    <label data-i18n="booking.field.departureDate" class="text-sm font-semibold text-brand-text">Departure date</label>
+                    <div class="mt-3">
+                      <DemoDateField
+                        client:load
+                        id="booking-departure-date"
+                        name="departureDate"
+                        initialValue="2026-05-20"
+                        ariaLabel="Departure date"
+                      />
+                    </div>
+                  </div>
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label data-i18n="booking.field.adults" class="text-sm font-semibold text-brand-text">Adults</label>
+                      <select class="field-box mt-3 h-12 w-full px-4 text-sm text-brand-text outline-none">
+                        <option>2 Adults</option>
+                        <option>1 Adult</option>
+                        <option>3 Adults</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label data-i18n="booking.field.children" class="text-sm font-semibold text-brand-text">Children</label>
+                      <select class="field-box mt-3 h-12 w-full px-4 text-sm text-brand-text outline-none">
+                        <option>0 Children</option>
+                        <option>1 Child</option>
+                        <option>2 Children</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-surface p-6">
+                <h2 data-i18n="booking.step2Title" class="text-xl font-semibold tracking-tight text-brand-text">Step 2: Guest details</h2>
+                <div class="mt-5 grid gap-4">
+                  <input type="text" data-i18n-placeholder="booking.field.fullName" placeholder="Full Name" class="field-box field-control" />
+                  <input type="email" data-i18n-placeholder="booking.field.email" placeholder="Email" class="field-box field-control" />
+                  <input type="tel" data-i18n-placeholder="booking.field.phone" placeholder="Phone" class="field-box field-control" />
+                  <textarea data-i18n-placeholder="booking.field.notes" placeholder="Special notes" class="field-box field-control h-auto min-h-28 py-3"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 card-surface p-6">
+              <h2 data-i18n="booking.step3Title" class="text-xl font-semibold tracking-tight text-brand-text">Step 3: Review & confirmation</h2>
+              <div class="mt-5 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-3xl bg-brand-bg p-5">
+                    <div data-i18n="table.tour" class="text-sm text-brand-muted">Tour</div>
+                    <div class="mt-2 font-semibold text-brand-text">{tour.name}</div>
+                  </div>
+                  <div class="rounded-3xl bg-brand-bg p-5">
+                    <div data-i18n="table.date" class="text-sm text-brand-muted">Date</div>
+                    <div class="mt-2 font-semibold text-brand-text">May 20 - May 24, 2026</div>
+                  </div>
+                  <div class="rounded-3xl bg-brand-bg p-5">
+                    <div data-i18n="tourDetail.travelers" class="text-sm text-brand-muted">Travelers</div>
+                    <div class="mt-2 font-semibold text-brand-text">2 Adults</div>
+                  </div>
+                  <div class="rounded-3xl bg-brand-bg p-5">
+                    <div data-i18n="tourDetail.total" class="text-sm text-brand-muted">Total</div>
+                    <div class="mt-2 font-semibold text-brand-text">${total}</div>
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                  <a href="/booking/confirmation" data-i18n="booking.confirm" class="btn-primary">Confirm Booking</a>
+                  <SaveBookingButton
+                    client:load
+                    draft={{
+                      tourSlug: tour.slug,
+                      tourName: tour.name,
+                      location: tour.location,
+                      travelDate: "May 20 - May 24, 2026",
+                      travelers: "2 Adults",
+                      totalLabel: `$${total}`,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

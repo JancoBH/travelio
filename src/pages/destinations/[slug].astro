@@ -1,0 +1,89 @@
+---
+import AppHeader from "../../components/AppHeader.astro";
+import Footer from "../../components/Footer.astro";
+import TourCard from "../../components/TourCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import { destinations, getDestinationBySlug } from "../../data/destinations";
+import { tours } from "../../data/tours";
+
+export function getStaticPaths() {
+  return destinations.map((destination) => ({
+    params: { slug: destination.slug },
+    props: {
+      destination,
+      destinationTours: tours.filter((tour) => tour.destinationSlug === destination.slug),
+    },
+  }));
+}
+
+const { destination, destinationTours } = Astro.props;
+---
+
+<Layout title={`${destination.name} | Travelio`} description={destination.overview}>
+  <AppHeader currentPath="/destinations" />
+
+  <main id="main-content" class="pb-20 pt-10 sm:pb-24">
+    <section class="relative overflow-hidden bg-brand-dark">
+      <img src={destination.heroImage} alt={destination.alt} class="absolute inset-0 h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/78 to-brand-dark/36"></div>
+      <div class="container-shell relative z-10 py-18 sm:py-24">
+        <p class="text-sm font-medium uppercase tracking-[0.24em] text-brand-accent">{destination.country}</p>
+        <h1 class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">{destination.name}</h1>
+        <p class="mt-5 max-w-2xl text-base leading-7 text-white/74">{destination.overview}</p>
+      </div>
+    </section>
+
+    <div class="container-shell mt-8 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+      <div class="space-y-6">
+        <div class="card-surface p-7 sm:p-8">
+          <p data-i18n="destinationDetail.tips" class="eyebrow">Travel Tips</p>
+          <h2 data-i18n="destinationDetail.bestTime" class="mt-3 text-2xl font-semibold tracking-tight text-brand-text">Best time to visit</h2>
+          <p class="mt-4 text-sm leading-7 text-brand-muted">{destination.bestTime}</p>
+          <ul class="mt-6 space-y-3 text-sm leading-7 text-brand-muted">
+            {destination.travelTips.map((tip) => (
+              <li class="flex gap-3">
+                <span class="mt-2 h-2 w-2 rounded-full bg-brand-accent"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card-surface p-7 sm:p-8">
+          <p data-i18n="destinationDetail.bestTours" class="eyebrow">Best Tours</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-brand-text"><span data-i18n="destinationDetail.featuredIn">Featured in</span> {destination.name}</h2>
+          <div class="mt-6 grid gap-6 lg:grid-cols-2">
+            {destinationTours.map((tour) => (
+              <TourCard tour={tour} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="card-surface p-7 sm:p-8">
+          <p data-i18n="destinationDetail.snapshot" class="eyebrow">Destination Snapshot</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-brand-text">{destination.toursCount} <span data-i18n="destinationDetail.available">tours available</span></h2>
+          <p class="mt-4 text-sm leading-7 text-brand-muted">
+            <span data-i18n="destinationDetail.pricingStarts">Pricing starts at</span> ${destination.priceFrom}. <span data-i18n="destinationDetail.snapshotCopy">This page is designed to support SEO, storytelling, and internal linking back to high-intent booking pages.</span>
+          </p>
+          <a href="/tours" data-i18n="destinationDetail.exploreAll" class="btn-primary mt-6">Explore all tours</a>
+        </div>
+
+        <div class="card-surface p-7 sm:p-8">
+          <p data-i18n="destinationDetail.faq" class="eyebrow">FAQ</p>
+          <div class="mt-5 space-y-4">
+            {destination.faq.map((item) => (
+              <div class="rounded-3xl bg-brand-bg p-5">
+                <h3 class="font-semibold text-brand-text">{item.question}</h3>
+                <p class="mt-3 text-sm leading-7 text-brand-muted">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

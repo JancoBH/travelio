@@ -1,0 +1,52 @@
+---
+import Icon from "./Icon.astro";
+import FavoriteButton from "./FavoriteButton";
+import type { Destination } from "../data/destinations";
+
+interface Props {
+  destination: Destination;
+}
+
+const { destination } = Astro.props;
+---
+
+<article class="group relative overflow-hidden rounded-[28px] border border-brand-border/40 bg-white shadow-[0_16px_40px_rgba(6,20,35,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_rgba(6,20,35,0.14)]">
+  <a href={`/destinations/${destination.slug}`} class="block">
+    <img
+      src={destination.image}
+      alt={destination.alt}
+      class="h-[340px] w-full object-cover transition duration-500 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/28 to-brand-dark/8"></div>
+    <div class="absolute right-4 top-4">
+      <FavoriteButton
+        client:idle
+        ariaLabel={`Save ${destination.name} to favorites`}
+        item={{
+          id: `destination:${destination.slug}`,
+          kind: "destination",
+          slug: destination.slug,
+          name: destination.name,
+          href: `/destinations/${destination.slug}`,
+          image: destination.image,
+          location: destination.country,
+          priceLabel: `$${destination.priceFrom}`,
+        }}
+      />
+    </div>
+    <div class="absolute inset-x-0 bottom-0 p-5 text-white">
+      <p class="text-sm text-white/74">{destination.country}</p>
+      <div class="mt-2 flex items-end justify-between gap-4">
+        <div>
+          <h3 class="text-2xl font-semibold tracking-tight">{destination.name}</h3>
+          <p class="mt-2 text-sm text-white/74">
+            From <span class="font-semibold text-brand-accent">${destination.priceFrom}</span>
+          </p>
+        </div>
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/12 text-white backdrop-blur-sm transition group-hover:bg-brand-accent group-hover:text-brand-dark">
+          <Icon name="chevron-right" class="h-4 w-4" />
+        </span>
+      </div>
+    </div>
+  </a>
+</article>

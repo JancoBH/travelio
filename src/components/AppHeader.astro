@@ -1,0 +1,12 @@
+---
+import AppHeaderClient from "./AppHeaderClient";
+
+interface Props {
+  currentPath?: string;
+  transparent?: boolean;
+}
+
+const { currentPath = "/", transparent = false } = Astro.props;
+---
+
+<AppHeaderClient client:load currentPath={currentPath} transparent={transparent} />

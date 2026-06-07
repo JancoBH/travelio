@@ -1,0 +1,44 @@
+---
+import AppHeader from "../../components/AppHeader.astro";
+import DestinationCard from "../../components/DestinationCard.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import Layout from "../../layouts/Layout.astro";
+import { destinations } from "../../data/destinations";
+---
+
+<Layout title="Destinations | Travelio" description="Explore visual destination pages with pricing anchors, tour counts, and location-first storytelling for a travel booking platform.">
+  <AppHeader currentPath="/destinations" />
+  <PageHero
+    eyebrow="Destinations"
+    eyebrowKey="destinations.hero.eyebrow"
+    title="Explore places that deserve a premium booking experience"
+    titleKey="destinations.hero.title"
+    description="Destination-led browsing matters for travel products because many users think in places first and tours second. This view is built around that behavior."
+    descriptionKey="destinations.hero.copy"
+    image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+  />
+
+  <main id="main-content" class="pb-20 pt-16 sm:pb-24">
+    <div class="container-shell">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {destinations.map((destination) => (
+          <div class="space-y-4">
+            <DestinationCard destination={destination} />
+            <div class="px-2">
+              <p class="text-sm leading-7 text-brand-muted">{destination.blurb}</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-brand-muted">{destination.toursCount} <span data-i18n="destinations.card.tours">tours</span></span>
+                <a href={`/destinations/${destination.slug}`} data-i18n="destinations.card.explore" class="font-semibold text-brand-teal">
+                  Explore tours
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

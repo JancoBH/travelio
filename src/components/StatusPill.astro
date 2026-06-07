@@ -1,0 +1,30 @@
+---
+import type { TranslationKey } from "../i18n/messages";
+
+interface Props {
+  status: "confirmed" | "pending" | "cancelled" | "completed";
+}
+
+const { status } = Astro.props;
+
+const tone =
+  status === "confirmed" || status === "completed"
+    ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+    : status === "pending"
+      ? "bg-amber-50 text-amber-700 border-amber-200"
+      : "bg-rose-50 text-rose-700 border-rose-200";
+
+const statusKey = `status.${status}` as TranslationKey;
+const fallbackLabel =
+  status === "confirmed"
+    ? "Confirmed"
+    : status === "pending"
+      ? "Pending"
+      : status === "completed"
+        ? "Completed"
+        : "Cancelled";
+---
+
+<span data-i18n={statusKey} class:list={["inline-flex rounded-full border px-3 py-1 text-xs font-semibold", tone]}>
+  {fallbackLabel}
+</span>

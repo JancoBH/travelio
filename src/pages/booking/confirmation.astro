@@ -1,0 +1,64 @@
+---
+import AppHeader from "../../components/AppHeader.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Booking Confirmed | Travelio" description="Booking confirmation experience with reservation details, next actions, and traveler-facing support touchpoints.">
+  <AppHeader currentPath="/booking" />
+
+  <main id="main-content" class="pb-20 pt-10 sm:pb-24">
+    <div class="container-shell">
+      <section class="overflow-hidden rounded-[32px] bg-brand-dark">
+        <div class="relative">
+          <img
+            src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1600&q=80"
+            alt="Mountain route confirmation banner"
+            class="absolute inset-0 h-full w-full object-cover opacity-35"
+          />
+          <div class="relative grid gap-6 px-6 py-10 sm:px-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-14 lg:py-14">
+            <div class="text-white">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full border border-emerald-300/30 bg-emerald-400/16 text-emerald-300">
+                <Icon name="check-circle" class="h-8 w-8" />
+              </div>
+              <h1 data-i18n="confirmation.title" class="mt-6 text-4xl font-semibold tracking-tight">Your booking is confirmed</h1>
+              <p class="mt-4 max-w-xl text-base leading-7 text-white/74">
+                <span data-i18n="confirmation.bookingIdLabel">Booking ID</span> <span class="font-semibold text-white">TRV-78452391</span>. <span data-i18n="confirmation.copy">A confirmation email has been sent with itinerary details, support contacts, and meeting instructions.</span>
+              </p>
+            </div>
+
+            <div class="panel p-6 sm:p-8">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-3xl bg-brand-bg p-5">
+                  <div data-i18n="table.tour" class="text-sm text-brand-muted">Tour</div>
+                  <div class="mt-2 font-semibold text-brand-text">Machu Picchu Journey</div>
+                </div>
+                <div class="rounded-3xl bg-brand-bg p-5">
+                  <div data-i18n="confirmation.totalPaid" class="text-sm text-brand-muted">Total Paid</div>
+                  <div class="mt-2 font-semibold text-brand-text">$1,342.00</div>
+                </div>
+                <div class="rounded-3xl bg-brand-bg p-5">
+                  <div data-i18n="table.date" class="text-sm text-brand-muted">Date</div>
+                  <div class="mt-2 font-semibold text-brand-text">May 20 - May 24, 2026</div>
+                </div>
+                <div class="rounded-3xl bg-brand-bg p-5">
+                  <div data-i18n="tourDetail.meetingPoint" class="text-sm text-brand-muted">Meeting Point</div>
+                  <div class="mt-2 font-semibold text-brand-text">Cusco Historic Center</div>
+                </div>
+              </div>
+
+              <div class="mt-6 grid gap-3 sm:grid-cols-3">
+                <a href="/" data-i18n="confirmation.back" class="btn-secondary">Back to Home</a>
+                <a href="/account" data-i18n="confirmation.viewBookings" class="btn-secondary">View My Bookings</a>
+                <button type="button" data-i18n="confirmation.download" class="btn-primary">Download Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

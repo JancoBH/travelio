@@ -1,0 +1,55 @@
+---
+import AppHeader from "../../components/AppHeader.astro";
+import ComponentsShowcaseClient from "../../components/ComponentsShowcaseClient";
+import Footer from "../../components/Footer.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Component System | Travelio"
+  description="A compact component reference for the reusable UI primitives and product components used in the Travelio demo."
+>
+  <AppHeader currentPath="/admin" />
+
+  <main id="main-content" class="pb-20 pt-10 sm:pb-24">
+    <div class="container-shell space-y-10">
+      <section class="surface-dark p-7 sm:p-8">
+        <p data-i18n="components.eyebrow" class="text-sm font-medium uppercase tracking-[0.24em] text-brand-accent">Component System</p>
+        <h1 data-i18n="components.title" class="mt-3 text-3xl font-semibold tracking-tight text-white">
+          Reusable UI primitives for the Travelio demo
+        </h1>
+        <p data-i18n="components.copy" class="mt-3 max-w-3xl text-sm leading-7 text-white/72">
+          This page shows the shared controls used across search, booking, account, and admin views so the project is easier to understand and extend.
+        </p>
+      </section>
+
+      <ComponentsShowcaseClient client:load />
+
+      <section class="card-surface p-7 sm:p-8">
+        <p data-i18n="components.usageEyebrow" class="eyebrow">How to use it</p>
+        <div class="mt-5 grid gap-4 lg:grid-cols-3">
+          <div class="rounded-3xl bg-brand-bg p-5">
+            <h2 class="font-semibold text-brand-text">src/components/ui</h2>
+            <p data-i18n="components.uiCopy" class="mt-3 text-sm leading-7 text-brand-muted">
+              Low-level controls such as UiSelect, UiDateField, UiPopover, and UiPriceSlider live here.
+            </p>
+          </div>
+          <div class="rounded-3xl bg-brand-bg p-5">
+            <h2 class="font-semibold text-brand-text">src/components</h2>
+            <p data-i18n="components.productCopy" class="mt-3 text-sm leading-7 text-brand-muted">
+              Product components such as cards, headers, search, dashboards, and booking actions live here.
+            </p>
+          </div>
+          <div class="rounded-3xl bg-brand-bg p-5">
+            <h2 class="font-semibold text-brand-text">src/lib</h2>
+            <p data-i18n="components.stateCopy" class="mt-3 text-sm leading-7 text-brand-muted">
+              Demo persistence for wishlist, saved plans, profile, settings, and admin drafts is isolated here.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

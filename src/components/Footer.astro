@@ -1,0 +1,78 @@
+---
+const companyLinks = [
+  { key: "footer.company.about", label: "About Us", href: "/about" },
+  { key: "footer.company.destinations", label: "Destinations", href: "/destinations" },
+  { key: "footer.company.tours", label: "Tours", href: "/tours" },
+  { key: "footer.company.admin", label: "Admin Dashboard", href: "/admin" },
+];
+const supportLinks = [
+  { key: "footer.support.contact", label: "Contact", href: "/contact" },
+  { key: "footer.support.guide", label: "Booking Guide", href: "/booking" },
+  { key: "footer.support.confirmation", label: "Confirmation Demo", href: "/booking/confirmation" },
+  { key: "footer.support.bookings", label: "My Bookings", href: "/account" },
+];
+const socialLinks = ["Instagram", "Facebook", "LinkedIn"];
+---
+
+<footer id="contact" class="border-t border-brand-border/80 bg-white/70">
+  <div class="container-shell py-16">
+    <div class="grid gap-10 lg:grid-cols-[1.1fr_0.8fr_0.8fr_1fr]">
+      <div>
+        <a href="/" class="text-2xl font-semibold tracking-tight text-brand-text">Travelio</a>
+        <p data-i18n="footer.copy" class="mt-4 max-w-sm text-sm leading-7 text-brand-muted">
+          Modern travel booking for curated tours, inspiring destinations, and premium
+          support from discovery to departure.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm text-brand-muted">
+          {socialLinks.map((link) => (
+            <a href="/contact" class="rounded-full border border-brand-border px-4 py-2 transition hover:border-brand-teal hover:text-brand-teal">
+              {link}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer.company" class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">Company</h3>
+        <div class="mt-5 space-y-3 text-sm text-brand-muted">
+          {companyLinks.map((link) => (
+            <a href={link.href} data-i18n={link.key} class="block transition hover:text-brand-text">{link.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer.support" class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">Support</h3>
+        <div class="mt-5 space-y-3 text-sm text-brand-muted">
+          {supportLinks.map((link) => (
+            <a href={link.href} data-i18n={link.key} class="block transition hover:text-brand-text">{link.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div id="signup">
+        <h3 data-i18n="footer.newsletter" class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">Newsletter</h3>
+        <p data-i18n="footer.newsletter.copy" class="mt-5 text-sm leading-7 text-brand-muted">
+          Get destination drops, seasonal offers, and curated travel inspiration.
+        </p>
+        <form class="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+          <label class="sr-only" for="newsletter-email">Email address</label>
+          <input
+            id="newsletter-email"
+            type="email"
+            data-i18n-placeholder="footer.newsletter.placeholder"
+            placeholder="Enter your email"
+            class="h-12 flex-1 rounded-full border border-brand-border bg-white px-4 text-sm text-brand-text outline-none transition focus:border-brand-teal"
+          />
+          <button
+            type="submit"
+            data-i18n="footer.newsletter.cta"
+            class="h-12 rounded-full bg-brand-dark px-5 text-sm font-semibold text-white transition hover:bg-brand-teal"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>

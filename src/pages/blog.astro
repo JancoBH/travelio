@@ -1,0 +1,44 @@
+---
+import AppHeader from "../components/AppHeader.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import { blogPosts } from "../data/blog";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Travelio Blog" description="Travel guides, trip inspiration, and product-facing editorial content for the Travelio demo platform.">
+  <AppHeader currentPath="/blog" />
+  <PageHero
+    eyebrow="Travelio Journal"
+    eyebrowKey="blog.hero.eyebrow"
+    title="Stories, guides, and destination notes"
+    titleKey="blog.hero.title"
+    description="A lightweight blog placeholder keeps the navigation honest and gives the project a cleaner open-source base."
+    descriptionKey="blog.hero.copy"
+    image="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+  />
+
+  <main id="main-content" class="pb-20 pt-16 sm:pb-24">
+    <div class="container-shell">
+      <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {blogPosts.map((post) => (
+          <article class="card-surface p-7">
+            <div class="flex items-center justify-between gap-4">
+              <p class="eyebrow">{post.category}</p>
+              <span class="text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
+                <span data-i18n="blog.readTimeLabel">Read time</span> · {post.readTime}
+              </span>
+            </div>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-brand-text">{post.title}</h2>
+            <p class="mt-4 text-sm leading-7 text-brand-muted">
+              {post.excerpt}
+            </p>
+            <a href="/contact" data-i18n="blog.cta" class="btn-secondary mt-6">Request a content extension</a>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

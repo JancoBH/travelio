@@ -1,11 +1,141 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import DestinationCard from "../components/DestinationCard.astro";
+import Footer from "../components/Footer.astro";
+import HeroSection from "../components/HeroSection.astro";
+import SpecialOffer from "../components/SpecialOffer.astro";
+import TourCard from "../components/TourCard.astro";
+import Layout from "../layouts/Layout.astro";
+import { destinations } from "../data/destinations";
+import { trustedBrands } from "../data/site";
+import { tours } from "../data/tours";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Travelio | Modern Tour Booking Platform"
+  description="Travelio is a modern tour booking platform for discovering curated adventures, premium destinations, and unforgettable travel experiences."
+>
+  <HeroSection />
+
+  <main id="main-content">
+    <section class="relative -mt-1 bg-brand-bg pb-20 pt-16 sm:pb-24 sm:pt-20">
+      <div class="container-shell">
+        <div class="panel px-6 py-8 sm:px-8">
+          <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p data-i18n="home.social.eyebrow" class="text-sm font-medium uppercase tracking-[0.24em] text-brand-teal">
+                Trusted by thousands of travelers
+              </p>
+              <h2 data-i18n="home.social.title" class="mt-3 text-2xl font-semibold tracking-tight text-brand-text">
+                Chosen by teams and travelers planning real-world experiences
+              </h2>
+            </div>
+            <div class="flex gap-3 overflow-x-auto pb-2 text-center sm:grid sm:grid-cols-3 md:grid-cols-5 sm:overflow-visible sm:pb-0 lg:min-w-[640px]">
+              {trustedBrands.map((brand) => (
+                <div class="min-w-[176px] rounded-2xl border border-brand-border bg-white px-4 py-4 text-[13px] font-semibold leading-tight text-brand-muted sm:min-w-0 sm:text-sm">
+                  {brand}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="destinations" class="pb-20 sm:pb-24">
+      <div class="container-shell">
+        <div class="section-heading">
+          <div>
+            <p data-i18n="home.destinations.eyebrow" class="text-sm font-medium uppercase tracking-[0.24em] text-brand-teal">Popular Destinations</p>
+            <h2 data-i18n="home.destinations.title" class="section-title mt-3">Find your next favorite escape</h2>
+            <p data-i18n="home.destinations.copy" class="section-copy">
+              Handpicked places with striking scenery, strong demand, and curated experiences
+              designed for travelers who want something polished from the start.
+            </p>
+          </div>
+          <a
+            href="/destinations"
+            data-i18n="home.destinations.cta"
+            class="hidden rounded-full border border-brand-border bg-white px-5 py-3 text-sm font-semibold text-brand-text transition hover:border-brand-teal hover:text-brand-teal sm:inline-flex"
+          >
+            View all destinations
+          </a>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {destinations.map((destination) => (
+            <DestinationCard destination={destination} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="tours" class="pb-20 sm:pb-24">
+      <div class="container-shell">
+        <div class="section-heading">
+          <div>
+            <p data-i18n="home.tours.eyebrow" class="text-sm font-medium uppercase tracking-[0.24em] text-brand-teal">Top Rated Tours</p>
+            <h2 data-i18n="home.tours.title" class="section-title mt-3">Curated experiences with premium conversion intent</h2>
+            <p data-i18n="home.tours.copy" class="section-copy">
+              Featured tour packages with strong visual hierarchy, clear pricing, and the core
+              data points a booking platform needs to convert interest into action.
+            </p>
+          </div>
+          <a
+            href="/tours"
+            data-i18n="home.tours.cta"
+            class="hidden rounded-full border border-brand-border bg-white px-5 py-3 text-sm font-semibold text-brand-text transition hover:border-brand-teal hover:text-brand-teal sm:inline-flex"
+          >
+            View all tours
+          </a>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {tours.map((tour) => (
+            <TourCard tour={tour} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="offers" class="pb-20 sm:pb-24">
+      <div class="container-shell">
+        <SpecialOffer />
+      </div>
+    </section>
+
+    <section id="about" class="pb-20 sm:pb-24">
+      <div class="container-shell">
+        <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="card-surface p-8 sm:p-10">
+            <p data-i18n="home.why.eyebrow" class="text-sm font-medium uppercase tracking-[0.24em] text-brand-teal">Why Travelio</p>
+            <h2 data-i18n="home.why.title" class="mt-4 text-3xl font-semibold tracking-tight text-brand-text">
+              Built like a premium travel product, not a placeholder template
+            </h2>
+            <p data-i18n="home.why.copy" class="mt-5 max-w-2xl text-base leading-7 text-brand-muted">
+              This concept home is structured to scale into tours listing, destination detail
+              pages, booking flow, customer account areas, and an internal admin dashboard while
+              preserving a clean editorial layer on the storefront.
+            </p>
+          </div>
+
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            <div class="card-surface p-8">
+              <div class="text-4xl font-semibold tracking-tight text-brand-text">12k+</div>
+              <p data-i18n="home.stat.travelers" class="mt-3 text-sm leading-6 text-brand-muted">
+                Travelers reached through curated journeys and repeat-friendly booking UX.
+              </p>
+            </div>
+            <div class="card-surface p-8">
+              <div class="text-4xl font-semibold tracking-tight text-brand-text">98%</div>
+              <p data-i18n="home.stat.satisfaction" class="mt-3 text-sm leading-6 text-brand-muted">
+                Satisfaction signal across guided tours, support responsiveness, and flexible trip planning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>
