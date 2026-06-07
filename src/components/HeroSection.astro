@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../lib/url";
 import BenefitBar from "./BenefitBar.astro";
 import AppHeader from "./AppHeader.astro";
 import SearchBox from "./SearchBox.astro";
@@ -27,8 +28,8 @@ import SearchBox from "./SearchBox.astro";
         help every trip feel effortless from the first search to the final memory.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/tours" data-i18n="hero.cta.explore" class="btn-primary">Explore Tours</a>
-        <a href="/destinations" data-i18n="hero.cta.browse" class="btn-ghost-light">
+        <a href={resolveUrl("/tours")} data-i18n="hero.cta.explore" class="btn-primary">Explore Tours</a>
+        <a href={resolveUrl("/destinations")} data-i18n="hero.cta.browse" class="btn-ghost-light">
           Browse Destinations
         </a>
       </div>

@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../../lib/url";
 import AppHeader from "../../components/AppHeader.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
@@ -30,9 +31,9 @@ const [heroImage, ...gallery] = tour.gallery;
               <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/75 to-transparent"></div>
               <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                 <p class="text-sm text-white/72">
-                  <a href="/tours" data-i18n="nav.tours" class="hover:text-white">Tours</a>
+                  <a href={resolveUrl("/tours")} data-i18n="nav.tours" class="hover:text-white">Tours</a>
                   <span class="mx-2">/</span>
-                  <a href={`/destinations/${tour.destinationSlug}`} class="hover:text-white">{tour.destinationName}</a>
+                  <a href={resolveUrl(`/destinations/${tour.destinationSlug}`)} class="hover:text-white">{tour.destinationName}</a>
                 </p>
                 <h1 class="mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                   {tour.name}
@@ -185,7 +186,7 @@ const [heroImage, ...gallery] = tour.gallery;
               </div>
             </div>
 
-            <a href={`/booking?tour=${tour.slug}`} data-i18n="tourDetail.book" class="btn-primary mt-6 w-full">Book Now</a>
+            <a href={resolveUrl(`/booking?tour=${tour.slug}`)} data-i18n="tourDetail.book" class="btn-primary mt-6 w-full">Book Now</a>
             <WishlistActionButton
               client:load
               item={{
@@ -193,7 +194,7 @@ const [heroImage, ...gallery] = tour.gallery;
                 kind: "tour",
                 slug: tour.slug,
                 name: tour.name,
-                href: `/tours/${tour.slug}`,
+                href: resolveUrl(`/tours/${tour.slug}`),
                 image: tour.image,
                 location: tour.location,
                 priceLabel: `$${tour.price}`,

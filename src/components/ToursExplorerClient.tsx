@@ -5,6 +5,7 @@ import type { Tour } from "../data/tours";
 import UiPriceSlider from "./ui/UiPriceSlider";
 import UiSelect from "./ui/UiSelect";
 import { useTranslations } from "../i18n/react";
+import { resolveUrl } from "../lib/url";
 
 type ToursExplorerClientProps = {
   tours: Tour[];
@@ -65,7 +66,7 @@ function TourResultCard({
   return (
     <article className="card-surface group overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_rgba(6,20,35,0.14)]">
       <div className="relative">
-        <a href={`/tours/${tour.slug}`} className="block">
+        <a href={resolveUrl(`/tours/${tour.slug}`)} className="block">
           <img
             src={tour.image}
             alt={tour.alt}
@@ -84,7 +85,7 @@ function TourResultCard({
               kind: "tour",
               slug: tour.slug,
               name: tour.name,
-              href: `/tours/${tour.slug}`,
+              href: resolveUrl(`/tours/${tour.slug}`),
               image: tour.image,
               location: tour.location,
               priceLabel: `$${tour.price}`,
@@ -95,7 +96,7 @@ function TourResultCard({
 
       <div className="p-6">
         <a
-          href={`/tours/${tour.slug}`}
+          href={resolveUrl(`/tours/${tour.slug}`)}
           className="text-xl font-semibold tracking-tight text-brand-text transition hover:text-brand-teal"
         >
           {tour.name}
@@ -124,10 +125,10 @@ function TourResultCard({
         </div>
 
         <div className="mt-5 flex gap-3">
-          <a href={`/tours/${tour.slug}`} className="btn-secondary min-w-0 flex-1 px-4">
+          <a href={resolveUrl(`/tours/${tour.slug}`)} className="btn-secondary min-w-0 flex-1 px-4">
             {t("tours.card.details")}
           </a>
-          <a href={`/booking?tour=${tour.slug}`} className="btn-primary min-w-0 flex-1 px-4">
+          <a href={resolveUrl(`/booking?tour=${tour.slug}`)} className="btn-primary min-w-0 flex-1 px-4">
             {t("tours.card.book")}
           </a>
         </div>
@@ -189,7 +190,7 @@ export default function ToursExplorerClient({ tours }: ToursExplorerClientProps)
     else params.delete("priceMax");
 
     const query = params.toString();
-    window.history.replaceState({}, "", query ? `/tours?${query}` : "/tours");
+    window.history.replaceState({}, "", resolveUrl(query ? `/tours?${query}` : "/tours"));
   }, [filters, maxPrice]);
 
   const filteredTours = useMemo(() => {

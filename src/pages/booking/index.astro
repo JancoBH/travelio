@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../../lib/url";
 import AppHeader from "../../components/AppHeader.astro";
 import DemoDateField from "../../components/DemoDateField";
 import Footer from "../../components/Footer.astro";
@@ -144,7 +145,7 @@ const total = tour.price * 2 + 144;
                 </div>
 
                 <div class="flex flex-col gap-3">
-                  <a href="/booking/confirmation" data-i18n="booking.confirm" class="btn-primary">Confirm Booking</a>
+                  <a href={resolveUrl("/booking/confirmation")} data-i18n="booking.confirm" class="btn-primary">Confirm Booking</a>
                   <SaveBookingButton
                     client:load
                     draft={{

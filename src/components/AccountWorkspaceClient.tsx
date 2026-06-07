@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { resolveUrl } from "../lib/url";
 import {
   removeSavedBookingDraft,
   saveDemoProfile,
@@ -15,24 +16,7 @@ import {
   useWishlist,
 } from "../lib/use-demo-store";
 import { useTranslations } from "../i18n/react";
-
-type BookingStatus = "confirmed" | "pending" | "cancelled" | "completed";
-
-type UpcomingBooking = {
-  name: string;
-  location: string;
-  date: string;
-  duration: string;
-  image: string;
-};
-
-type PastBooking = {
-  name: string;
-  location: string;
-  date: string;
-  amount: string;
-  status: BookingStatus;
-};
+import type { UpcomingBooking, PastBooking, BookingStatus } from "../data/dashboard";
 
 type AccountSection = "upcoming" | "history" | "saved-plans" | "wishlist" | "reviews" | "profile" | "settings";
 
@@ -113,10 +97,10 @@ export default function AccountWorkspaceClient({
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p data-i18n="account.upcoming" className="eyebrow">Upcoming Bookings</p>
-              <h2 data-i18n="account.nextTrips" className="mt-3 text-2xl font-semibold tracking-tight text-brand-text">Your next trips</h2>
+              <p className="eyebrow">{t("account.upcoming")}</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-brand-text">{t("account.nextTrips")}</h2>
             </div>
-            <a href="/booking/confirmation" data-i18n="account.latest" className="btn-secondary">Open Latest Booking</a>
+            <a href={resolveUrl("/booking/confirmation")} className="btn-secondary">{t("account.latest")}</a>
           </div>
           <div className="mt-6 grid gap-6 lg:grid-cols-2">
             {upcomingBookings.map((trip) => (
@@ -129,7 +113,7 @@ export default function AccountWorkspaceClient({
                     <p>{trip.date}</p>
                     <p>{trip.duration}</p>
                   </div>
-                  <a href="/booking/confirmation" data-i18n="account.viewDetails" className="btn-primary mt-5 w-full">View Details</a>
+                  <a href={resolveUrl("/booking/confirmation")} className="btn-primary mt-5 w-full">{t("account.viewDetails")}</a>
                 </div>
               </article>
             ))}
@@ -139,8 +123,8 @@ export default function AccountWorkspaceClient({
 
       {activeSection === "history" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.pastEyebrow" className="eyebrow">Past Bookings</p>
-          <h2 data-i18n="account.historyTitle" className="mt-3 text-2xl font-semibold tracking-tight text-brand-text">Travel history</h2>
+          <p className="eyebrow">{t("account.pastEyebrow")}</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-brand-text">{t("account.historyTitle")}</h2>
           <div className="mt-6 overflow-x-auto rounded-[28px] border border-brand-border">
             <table className="min-w-full bg-white text-left">
               <thead className="bg-brand-bg">
@@ -174,8 +158,8 @@ export default function AccountWorkspaceClient({
 
       {activeSection === "saved-plans" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.savedPlansEyebrow" className="eyebrow">Saved Plans</p>
-          <h3 data-i18n="account.savedPlansTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">Booking drafts</h3>
+          <p className="eyebrow">{t("account.savedPlansEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">{t("account.savedPlansTitle")}</h3>
           {savedPlans.length ? (
             <div className="mt-5 grid gap-4 lg:grid-cols-2">
               {savedPlans.map((plan) => (
@@ -198,8 +182,8 @@ export default function AccountWorkspaceClient({
               ))}
             </div>
           ) : (
-            <p data-i18n="account.savedPlansEmpty" className="mt-4 text-sm leading-7 text-brand-muted">
-              Save a booking draft from the booking flow to keep it visible here.
+            <p className="mt-4 text-sm leading-7 text-brand-muted">
+              {t("account.savedPlansEmpty")}
             </p>
           )}
         </div>
@@ -207,8 +191,8 @@ export default function AccountWorkspaceClient({
 
       {activeSection === "wishlist" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.wishlistEyebrow" className="eyebrow">Wishlist</p>
-          <h3 data-i18n="account.wishlistTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">Saved tours</h3>
+          <p className="eyebrow">{t("account.wishlistEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">{t("account.wishlistTitle")}</h3>
           {wishlist.length ? (
             <div className="mt-5 grid gap-4 lg:grid-cols-2">
               {wishlist.map((item) => (
@@ -223,8 +207,8 @@ export default function AccountWorkspaceClient({
               ))}
             </div>
           ) : (
-            <p data-i18n="account.wishlistEmpty" className="mt-4 text-sm leading-7 text-brand-muted">
-              Favorite tours and destinations will show up here.
+            <p className="mt-4 text-sm leading-7 text-brand-muted">
+              {t("account.wishlistEmpty")}
             </p>
           )}
         </div>
@@ -232,8 +216,8 @@ export default function AccountWorkspaceClient({
 
       {activeSection === "reviews" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.reviewsEyebrow" className="eyebrow">Reviews</p>
-          <h3 data-i18n="account.reviewsTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">Review history</h3>
+          <p className="eyebrow">{t("account.reviewsEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">{t("account.reviewsTitle")}</h3>
           <div className="mt-5 grid gap-4 lg:grid-cols-2">
             {pastBookings.map((booking) => {
               const reviewId = `review:${booking.name}`;
@@ -297,8 +281,8 @@ export default function AccountWorkspaceClient({
 
       {activeSection === "profile" ? (
         <div className="max-w-2xl p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.profileEyebrow" className="eyebrow">Profile</p>
-          <h3 data-i18n="account.profileTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">Traveler details</h3>
+          <p className="eyebrow">{t("account.profileEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">{t("account.profileTitle")}</h3>
           <div className="mt-5 grid gap-4">
             <label className="grid gap-2 text-sm font-semibold text-brand-text">
               {t("account.profile.fullName")}
@@ -349,8 +333,8 @@ export default function AccountWorkspaceClient({
 
       {activeSection === "settings" ? (
         <div className="max-w-2xl p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.settingsEyebrow" className="eyebrow">Settings</p>
-          <h3 data-i18n="account.settingsTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">Notifications and support</h3>
+          <p className="eyebrow">{t("account.settingsEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">{t("account.settingsTitle")}</h3>
           <div className="mt-5 space-y-3">
             {[
               { key: "emailUpdates", label: t("account.setting.emailUpdates") },

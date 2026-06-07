@@ -1,3 +1,30 @@
+export type BookingStatus = "confirmed" | "pending" | "cancelled" | "completed";
+
+export interface RecentBooking {
+  id: string;
+  customer: string;
+  tour: string;
+  date: string;
+  amount: string;
+  status: BookingStatus;
+}
+
+export interface UpcomingBooking {
+  name: string;
+  location: string;
+  date: string;
+  duration: string;
+  image: string;
+}
+
+export interface PastBooking {
+  name: string;
+  location: string;
+  date: string;
+  amount: string;
+  status: BookingStatus;
+}
+
 export const dashboardStats = [
   { label: "Total Bookings", labelKey: "admin.stats.totalBookings", value: "1,248", delta: "+12.8%" },
   { label: "Revenue", labelKey: "admin.stats.revenue", value: "$32,450", delta: "+8.2%" },
@@ -12,7 +39,7 @@ export const userHighlights = [
   { label: "Reviews", labelKey: "account.stats.reviews", value: "12" },
 ];
 
-export const recentBookings = [
+export const recentBookings: RecentBooking[] = [
   {
     id: "TRV-78452391",
     customer: "John Doe",
@@ -47,7 +74,7 @@ export const recentBookings = [
   },
 ];
 
-export const upcomingBookings = [
+export const upcomingBookings: UpcomingBooking[] = [
   {
     name: "Machu Picchu Journey",
     location: "Peru",
@@ -64,7 +91,7 @@ export const upcomingBookings = [
   },
 ];
 
-export const pastBookings = [
+export const pastBookings: PastBooking[] = [
   {
     name: "Santorini Sunset Tour",
     location: "Greece",

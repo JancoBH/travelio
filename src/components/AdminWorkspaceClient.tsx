@@ -3,17 +3,7 @@ import { BarChart3, ClipboardList, MessageSquareText, Settings, Table2 } from "l
 import AdminInventoryClient from "./AdminInventoryClient";
 import { useTranslations } from "../i18n/react";
 import { UiBarChart, UiDonutChart } from "./ui/UiCharts";
-
-type BookingStatus = "confirmed" | "pending" | "cancelled" | "completed";
-
-type RecentBooking = {
-  id: string;
-  customer: string;
-  tour: string;
-  date: string;
-  amount: string;
-  status: BookingStatus;
-};
+import type { RecentBooking, BookingStatus } from "../data/dashboard";
 
 type AdminSection = "overview" | "bookings" | "inventory" | "reviews" | "settings";
 
@@ -107,11 +97,11 @@ export default function AdminWorkspaceClient({ recentBookings }: { recentBooking
         <div className="grid gap-6 p-3 pt-6 sm:p-5 sm:pt-7 xl:grid-cols-[1.1fr_0.9fr]">
           <div>
             <div className="flex items-center justify-between">
-              <h2 data-i18n="admin.revenueOverview" className="text-2xl font-semibold tracking-tight text-brand-text">
-                Revenue Overview
+              <h2 className="text-2xl font-semibold tracking-tight text-brand-text">
+                {t("admin.revenueOverview")}
               </h2>
-              <span data-i18n="admin.thisMonth" className="rounded-full bg-brand-bg px-3 py-1.5 text-xs font-semibold text-brand-muted">
-                This Month
+              <span className="rounded-full bg-brand-bg px-3 py-1.5 text-xs font-semibold text-brand-muted">
+                {t("admin.thisMonth")}
               </span>
             </div>
             <div className="mt-6">
@@ -120,8 +110,8 @@ export default function AdminWorkspaceClient({ recentBookings }: { recentBooking
           </div>
 
           <div>
-            <h2 data-i18n="admin.bookingStatus" className="text-2xl font-semibold tracking-tight text-brand-text">
-              Booking Status
+            <h2 className="text-2xl font-semibold tracking-tight text-brand-text">
+              {t("admin.bookingStatus")}
             </h2>
             <div className="mt-6">
               <UiDonutChart
@@ -138,8 +128,8 @@ export default function AdminWorkspaceClient({ recentBookings }: { recentBooking
 
       {activeSection === "bookings" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <h2 data-i18n="admin.recentBookings" className="text-2xl font-semibold tracking-tight text-brand-text">
-            Recent Bookings
+          <h2 className="text-2xl font-semibold tracking-tight text-brand-text">
+            {t("admin.recentBookings")}
           </h2>
           <div className="mt-6 overflow-x-auto rounded-[28px] border border-brand-border">
             <table className="min-w-full bg-white text-left">
@@ -176,12 +166,12 @@ export default function AdminWorkspaceClient({ recentBookings }: { recentBooking
 
       {activeSection === "inventory" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="admin.inventoryEyebrow" className="eyebrow">Tour Inventory</p>
-          <h3 data-i18n="admin.inventoryTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">
-            Add, edit, and reprice tours
+          <p className="eyebrow">{t("admin.inventoryEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">
+            {t("admin.inventoryTitle")}
           </h3>
-          <p data-i18n="admin.inventoryCopy" className="mt-3 text-sm leading-7 text-brand-muted">
-            This block represents the inventory management layer where operators update tours and destination coverage.
+          <p className="mt-3 text-sm leading-7 text-brand-muted">
+            {t("admin.inventoryCopy")}
           </p>
           <div className="mt-5">
             <AdminInventoryClient />
@@ -191,24 +181,24 @@ export default function AdminWorkspaceClient({ recentBookings }: { recentBooking
 
       {activeSection === "reviews" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="admin.reviewsEyebrow" className="eyebrow">Reviews</p>
-          <h3 data-i18n="admin.reviewsTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">
-            Monitor guest sentiment
+          <p className="eyebrow">{t("admin.reviewsEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">
+            {t("admin.reviewsTitle")}
           </h3>
-          <p data-i18n="admin.reviewsCopy" className="mt-3 max-w-3xl text-sm leading-7 text-brand-muted">
-            Review quality signals help the admin side feel tied to the storefront and booking lifecycle.
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-brand-muted">
+            {t("admin.reviewsCopy")}
           </p>
         </div>
       ) : null}
 
       {activeSection === "settings" ? (
         <div className="p-3 pt-6 sm:p-5 sm:pt-7">
-          <p data-i18n="account.settingsEyebrow" className="eyebrow">Settings</p>
-          <h3 data-i18n="admin.settingsTitle" className="mt-3 text-xl font-semibold tracking-tight text-brand-text">
-            Permissions and operations
+          <p className="eyebrow">{t("account.settingsEyebrow")}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight text-brand-text">
+            {t("admin.settingsTitle")}
           </h3>
-          <p data-i18n="admin.settingsCopy" className="mt-3 max-w-3xl text-sm leading-7 text-brand-muted">
-            Roles, notifications, payment configuration, and internal workflow rules would live here.
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-brand-muted">
+            {t("admin.settingsCopy")}
           </p>
         </div>
       ) : null}

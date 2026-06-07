@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../../lib/url";
 import AppHeader from "../../components/AppHeader.astro";
 import Footer from "../../components/Footer.astro";
 import TourCard from "../../components/TourCard.astro";
@@ -67,7 +68,7 @@ const { destination, destinationTours } = Astro.props;
           <p class="mt-4 text-sm leading-7 text-brand-muted">
             <span data-i18n="destinationDetail.pricingStarts">Pricing starts at</span> ${destination.priceFrom}. <span data-i18n="destinationDetail.snapshotCopy">This page is designed to support SEO, storytelling, and internal linking back to high-intent booking pages.</span>
           </p>
-          <a href="/tours" data-i18n="destinationDetail.exploreAll" class="btn-primary mt-6">Explore all tours</a>
+          <a href={resolveUrl("/tours")} data-i18n="destinationDetail.exploreAll" class="btn-primary mt-6">Explore all tours</a>
         </div>
 
         <div class="card-surface p-7 sm:p-8">

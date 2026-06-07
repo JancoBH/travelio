@@ -1,4 +1,5 @@
 ---
+import { resolveUrl } from "../lib/url";
 import AppHeader from "../components/AppHeader.astro";
 import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
@@ -33,7 +34,7 @@ import Layout from "../layouts/Layout.astro";
             <p class="mt-4 text-sm leading-7 text-brand-muted">
               {post.excerpt}
             </p>
-            <a href="/contact" data-i18n="blog.cta" class="btn-secondary mt-6">Request a content extension</a>
+            <a href={resolveUrl("/contact")} data-i18n="blog.cta" class="btn-secondary mt-6">Request a content extension</a>
           </article>
         ))}
       </section>

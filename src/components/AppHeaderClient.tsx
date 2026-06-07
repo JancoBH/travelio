@@ -4,6 +4,7 @@ import { navLinks } from "../data/site";
 import { persistLocale, readLocale, useTranslations } from "../i18n/react";
 import type { Locale } from "../i18n/messages";
 import { useWishlist } from "../lib/use-demo-store";
+import { resolveUrl } from "../lib/url";
 
 type HeaderProps = {
   currentPath?: string;
@@ -166,7 +167,7 @@ export default function AppHeaderClient({
     <header ref={headerRef} className={`inset-x-0 top-0 z-30 ${transparent ? "absolute" : "sticky bg-brand-bg/88 backdrop-blur-md"}`}>
       <div className="container-shell py-4 sm:py-6">
         <div className={`flex items-center justify-between rounded-full px-4 py-3 sm:px-6 ${headerTone}`}>
-          <a href="/" className="flex items-center gap-3 font-semibold tracking-tight">
+          <a href={resolveUrl("/")} className="flex items-center gap-3 font-semibold tracking-tight">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-brand-dark">
               <MapPinned className="h-5 w-5" />
             </span>
@@ -182,7 +183,7 @@ export default function AppHeaderClient({
               return (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={resolveUrl(link.href)}
                   aria-current={active ? "page" : undefined}
                   className={[
                     "transition",
@@ -206,7 +207,7 @@ export default function AppHeaderClient({
             {isLoggedIn ? (
               <>
                 <a
-                  href="/account#wishlist"
+                  href={resolveUrl("/account#wishlist")}
                   aria-label="Open favorites"
                   className={[
                     "relative inline-flex h-11 w-11 items-center justify-center rounded-full transition",
@@ -223,7 +224,7 @@ export default function AppHeaderClient({
                   ) : null}
                 </a>
                 <a
-                  href="/account"
+                  href={resolveUrl("/account")}
                   className="rounded-full bg-brand-accent px-5 py-2.5 text-sm font-semibold text-brand-dark transition hover:brightness-95"
                 >
                   {t("header.myAccount")}
@@ -231,7 +232,7 @@ export default function AppHeaderClient({
               </>
             ) : (
               <a
-                href="/account"
+                href={resolveUrl("/account")}
                 className="rounded-full bg-brand-accent px-5 py-2.5 text-sm font-semibold text-brand-dark transition hover:brightness-95"
               >
                 {t("header.signUp")}
@@ -242,7 +243,7 @@ export default function AppHeaderClient({
           <div className="flex items-center gap-2 lg:hidden">
             {isLoggedIn ? (
               <a
-                href="/account#wishlist"
+                href={resolveUrl("/account#wishlist")}
                 aria-label="Open favorites"
                 className={[
                   "relative inline-flex h-11 w-11 items-center justify-center rounded-full",
@@ -282,7 +283,7 @@ export default function AppHeaderClient({
                 return (
                   <a
                     key={link.href}
-                    href={link.href}
+                    href={resolveUrl(link.href)}
                     onClick={() => setMenuOpen(false)}
                     className={[
                       "block rounded-2xl px-4 py-3 text-sm transition",
@@ -309,7 +310,7 @@ export default function AppHeaderClient({
 
             <div className="mt-4 flex items-center gap-3">
               <a
-                href="/account"
+                href={resolveUrl("/account")}
                 className="flex-1 rounded-2xl bg-brand-accent px-4 py-3 text-center text-sm font-semibold text-brand-dark"
               >
                 {isLoggedIn ? t("header.myAccount") : t("header.signUp")}

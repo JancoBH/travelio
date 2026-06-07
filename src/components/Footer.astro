@@ -1,4 +1,6 @@
 ---
+import { resolveUrl } from "../lib/url";
+
 const companyLinks = [
   { key: "footer.company.about", label: "About Us", href: "/about" },
   { key: "footer.company.destinations", label: "Destinations", href: "/destinations" },
@@ -18,14 +20,14 @@ const socialLinks = ["Instagram", "Facebook", "LinkedIn"];
   <div class="container-shell py-16">
     <div class="grid gap-10 lg:grid-cols-[1.1fr_0.8fr_0.8fr_1fr]">
       <div>
-        <a href="/" class="text-2xl font-semibold tracking-tight text-brand-text">Travelio</a>
+        <a href={resolveUrl("/")} class="text-2xl font-semibold tracking-tight text-brand-text">Travelio</a>
         <p data-i18n="footer.copy" class="mt-4 max-w-sm text-sm leading-7 text-brand-muted">
           Modern travel booking for curated tours, inspiring destinations, and premium
           support from discovery to departure.
         </p>
         <div class="mt-6 flex flex-wrap gap-3 text-sm text-brand-muted">
           {socialLinks.map((link) => (
-            <a href="/contact" class="rounded-full border border-brand-border px-4 py-2 transition hover:border-brand-teal hover:text-brand-teal">
+            <a href={resolveUrl("/contact")} class="rounded-full border border-brand-border px-4 py-2 transition hover:border-brand-teal hover:text-brand-teal">
               {link}
             </a>
           ))}
@@ -36,7 +38,7 @@ const socialLinks = ["Instagram", "Facebook", "LinkedIn"];
         <h3 data-i18n="footer.company" class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">Company</h3>
         <div class="mt-5 space-y-3 text-sm text-brand-muted">
           {companyLinks.map((link) => (
-            <a href={link.href} data-i18n={link.key} class="block transition hover:text-brand-text">{link.label}</a>
+            <a href={resolveUrl(link.href)} data-i18n={link.key} class="block transition hover:text-brand-text">{link.label}</a>
           ))}
         </div>
       </div>
@@ -45,7 +47,7 @@ const socialLinks = ["Instagram", "Facebook", "LinkedIn"];
         <h3 data-i18n="footer.support" class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">Support</h3>
         <div class="mt-5 space-y-3 text-sm text-brand-muted">
           {supportLinks.map((link) => (
-            <a href={link.href} data-i18n={link.key} class="block transition hover:text-brand-text">{link.label}</a>
+            <a href={resolveUrl(link.href)} data-i18n={link.key} class="block transition hover:text-brand-text">{link.label}</a>
           ))}
         </div>
       </div>

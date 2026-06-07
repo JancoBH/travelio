@@ -17,6 +17,7 @@ import {
 import UiSelect from "./ui/UiSelect";
 import UiDateField from "./ui/UiDateField";
 import { UiPopover } from "./ui/UiPopover";
+import { resolveUrl } from "../lib/url";
 import { tours } from "../data/tours";
 import { destinations } from "../data/destinations";
 import { useTranslations } from "../i18n/react";
@@ -401,7 +402,7 @@ export default function SearchBoxClient() {
       });
     }
 
-    window.location.assign(`/tours?${params.toString()}`);
+    window.location.assign(resolveUrl(`/tours?${params.toString()}`));
   };
 
   return (
