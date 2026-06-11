@@ -29,3 +29,7 @@ skills-lock.json
 
 # editor workspace settings
 .vscode/
+
+# local planning notes
+notes/
+scratch/

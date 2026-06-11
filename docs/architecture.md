@@ -87,9 +87,10 @@ Current primitives and shared building blocks:
 - `UiDateField`: shared typed date input and lightweight calendar picker
 - `UiPopover`: popover shell used by search and lightweight overlays
 - `UiPriceSlider`: client-side price filtering
-- `StatusPill`: shared booking status presentation
+- `UiBarChart` / `UiDonutChart`: shared dashboard chart primitives
 - `PageHero`: route hero wrapper for secondary pages
 - `TourCard` / `DestinationCard`: storefront listing cards
+- `FavoriteButton`: shared wishlist toggle behavior
 
 Document reusable parts only when they are actually stable in code. Do not advertise a component API that the repo does not consistently follow.
 

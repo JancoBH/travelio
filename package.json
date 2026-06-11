@@ -1,5 +1,7 @@
 {
-  "name": "tourbookingplatform",
+  "name": "travelio",
+  "private": true,
+  "description": "A reusable tours and experiences booking platform demo built with Astro, React, TypeScript, and Tailwind CSS.",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,9 +11,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:github-pages": "node ./scripts/build-github-pages.mjs",
+    "check": "astro check",
     "preview": "astro preview",
     "astro": "astro"
   },
+  "keywords": [
+    "astro",
+    "react",
+    "tailwindcss",
+    "typescript",
+    "travel",
+    "booking",
+    "admin-dashboard"
+  ],
   "dependencies": {
     "@astrojs/react": "^5.0.6",
     "@radix-ui/react-popover": "^1.1.15",
@@ -25,5 +37,10 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3"
   }
 }

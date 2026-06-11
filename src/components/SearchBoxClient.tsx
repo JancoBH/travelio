@@ -367,7 +367,7 @@ export default function SearchBoxClient() {
     setMultiStops(nextStops);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: Parameters<NonNullable<ComponentPropsWithoutRef<"form">["onSubmit"]>>[0]) => {
     event.preventDefault();
 
     if (tripMode === "single" && !destination.trim()) {
